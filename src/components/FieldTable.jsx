@@ -95,6 +95,8 @@ const FieldComponent = styled.div`
 `;
 
 const Title = styled.div`
+  font-family: Pretendard;
+  font-size: 20px;
   font-weight: 700;
   padding-bottom: 16px;
 `;
@@ -116,6 +118,7 @@ const TableTitles = styled.div`
 `;
 
 const FieldName = styled.div`
+  font-family: Pretendard;
   color: #3962ad;
   border-bottom: 1px solid #90a8d1;
   width: 78px;
@@ -158,6 +161,8 @@ const TableRow = styled.div`
 `;
 
 const FieldBtn = styled.div`
+  font-family: Pretendard;
+  font-weight: 400;
   display: flex;
   justify-content: flex-start;
   align-items: center;
