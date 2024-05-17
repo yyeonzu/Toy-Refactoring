@@ -4,6 +4,7 @@ import FieldTable from '../components/FieldTable';
 import BasketSideBar from '../components/BasketSideBar';
 import BasketPage from './BasketPage';
 import BasketSideBarBtn from '../components/BasketSideBarBtn';
+import SinchonBox from '../components/SinchonBox';
 
 const BranchPage = () => {
   const newsList = [
@@ -19,6 +20,7 @@ const BranchPage = () => {
 
   return (
     <BranchPageComponent>
+      <SinchonBox />
       <FieldTable />
       <SideBar>
         <BasketSideBarBtn text="매장소식" color="#999999" />
