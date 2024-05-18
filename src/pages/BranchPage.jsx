@@ -6,6 +6,8 @@ import BasketPage from './BasketPage';
 import BasketSideBarBtn from '../components/BasketSideBarBtn';
 import SinchonBox from '../components/SinchonBox';
 import BooksList from '../components/BooksList';
+import MusicAlbumsList from '../components/MusicAlbumsList';
+import AladinGoodsList from '../components/AladinGoodsList';
 
 const BranchPage = () => {
   const newsList = [
@@ -30,6 +32,8 @@ const BranchPage = () => {
         <BasketSideBar listData={FAQList} />
       </SideBar>
       <BooksList />
+      <MusicAlbumsList />
+      <AladinGoodsList />
     </BranchPageComponent>
   );
 };
