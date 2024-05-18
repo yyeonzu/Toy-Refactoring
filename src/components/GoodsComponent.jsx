@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const GoodsComponent = ({productImg, productTitle, productPrice, productDC}) => {
@@ -27,7 +27,6 @@ const Goods = styled.div`
 const GoodsImg = styled.img`
   width: 150px;
   display: flex;
-  align-items: flex-start;
 `;
 
 const TitleSection = styled.div`
@@ -36,7 +35,7 @@ const TitleSection = styled.div`
 `;
 
 const GoodsTitle = styled.p`
-  max-width: 146px;
+  max-width: 150px;
   max-height: 38px;
   font-family: Pretendard;
   font-size: 16px;
@@ -45,14 +44,13 @@ const GoodsTitle = styled.p`
   overflow: hidden;
   text-overflow: clip;
   margin-bottom: 0px;
-  margin-top: 10px;
+  margin-top: 8px;
 `;
 
 const GoodsInfo = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
   gap: 16px;
 `;
 
@@ -62,6 +60,7 @@ const GoodsPrice = styled.p`
   font-weight: 700;
   color: #ea328f;
   margin-top: 8px;
+  margin-bottom: 0px;
 `;
 
 const GoodsDC = styled.p`
@@ -70,4 +69,5 @@ const GoodsDC = styled.p`
   font-weight: 400;
   color: #999999;
   margin-top: 8px;
+  margin-bottom: 0px;
 `;

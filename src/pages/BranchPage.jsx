@@ -24,16 +24,22 @@ const BranchPage = () => {
   return (
     <BranchPageComponent>
       <SinchonBox />
-      <FieldTable />
-      <SideBar>
-        <BasketSideBarBtn text="매장소식" color="#999999" />
-        <BasketSideBar listData={newsList} />
-        <BasketSideBarBtn text="중고매장 FAQ" color="#999999" />
-        <BasketSideBar listData={FAQList} />
-      </SideBar>
-      <BooksList />
-      <MusicAlbumsList />
-      <AladinGoodsList />
+      <SinchonInfo>
+        <BranchMain>
+          <FieldTable />
+          <GoodsList>
+            <BooksList />
+            <MusicAlbumsList />
+            <AladinGoodsList />
+          </GoodsList>
+        </BranchMain>
+        <SideBar>
+          <BasketSideBarBtn text="매장소식" color="#999999" />
+          <BasketSideBar listData={newsList} />
+          <BasketSideBarBtn text="중고매장 FAQ" color="#999999" />
+          <BasketSideBar listData={FAQList} />
+        </SideBar>
+      </SinchonInfo>
     </BranchPageComponent>
   );
 };
@@ -43,6 +49,20 @@ export default BranchPage;
 const BranchPageComponent = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding: 40px 222px 0 222px;
+`;
+
+const SinchonInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  padding-top: 40px;
+`;
+
+const BranchMain = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const SideBar = styled.div`
@@ -50,4 +70,9 @@ const SideBar = styled.div`
   flex-direction: column;
   gap: 24px;
   width: 282px;
+`;
+
+const GoodsList = styled.div`
+  padding-top: 64px;
+  padding-bottom: 72px;
 `;

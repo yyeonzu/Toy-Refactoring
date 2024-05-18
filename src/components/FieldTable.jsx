@@ -146,6 +146,7 @@ const TableBody = styled.div`
   border-bottom: 1px solid #90a8d1;
   padding-left: 30px;
   padding-right: 30px;
+  cursor: pointer;
   ${(props) =>
     props.currentField === 'foreign' &&
     css`

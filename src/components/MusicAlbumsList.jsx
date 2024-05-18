@@ -31,7 +31,7 @@ const MusicAlbumsList = () => {
         />
         <GoodsComponent
           productImg={albumImg4}
-          productTitle="아이브 - 미니 2집 IVE6 SWITCH (Digipack"
+          productTitle="아이브 - 미니 2집 IVE SWITCH (Digipack"
           productPrice="12,800원"
           productDC="10% 할인"
         />
@@ -44,16 +44,19 @@ export default MusicAlbumsList;
 
 const AlbumsList = styled.div`
   gap: 16px;
+  padding-top: 60px;
 `;
 
 const GoodsField = styled.p`
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 700;
+  padding-bottom: 16px;
+  margin: 0px 0px;
 `;
 
 const AlbumsComponent = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  gap: 30px;
 `;

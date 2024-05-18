@@ -40,15 +40,16 @@ const StoreImage = styled.img`
 `;
 
 const SinchonDescriptBox = styled.div`
-  position: absolute;
-  top: 8px;
-  left: 8px;
+  position: relative;
+  top: -0px;
+  left: -993px;
   display: flex;
   flex-direction: column;
   max-width: 202px;
   max-height: 229px;
   padding: 67px 34px 24px 16px;
   gap: 8px;
+  white-space: nowrap;
 `;
 
 const StoreName = styled.p`
@@ -57,7 +58,7 @@ const StoreName = styled.p`
   font-weight: 700;
   color: #ffffff;
   text-align: left;
-  margin: 0px 0px;
+  margin: 4px 0px;
 `;
 
 const StoreInfo = styled.div``;
@@ -100,4 +101,5 @@ const SinchonBtn = styled.button`
   text-align: center;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;

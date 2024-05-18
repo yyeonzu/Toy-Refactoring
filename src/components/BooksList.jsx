@@ -50,11 +50,12 @@ const GoodsField = styled.p`
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 700;
-  padding-bottom: 10px;
+  padding-bottom: 39px;
+  margin: 0px 0px;
 `;
 
 const UsedBooksComponent = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  gap: 30px;
 `;
