@@ -5,6 +5,7 @@ import BasketSideBar from '../components/BasketSideBar';
 import BasketPage from './BasketPage';
 import BasketSideBarBtn from '../components/BasketSideBarBtn';
 import SinchonBox from '../components/SinchonBox';
+import BooksList from '../components/BooksList';
 
 const BranchPage = () => {
   const newsList = [
@@ -28,6 +29,7 @@ const BranchPage = () => {
         <BasketSideBarBtn text="중고매장 FAQ" color="#999999" />
         <BasketSideBar listData={FAQList} />
       </SideBar>
+      <BooksList />
     </BranchPageComponent>
   );
 };
