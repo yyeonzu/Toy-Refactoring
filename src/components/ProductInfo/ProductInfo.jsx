@@ -162,7 +162,6 @@ const ItemContainer = styled.div`
   justify-content: center;
   width: fit-content;
   /* border: solid 1px; */
-  margin: 12px 0 12px 0;
 `;
 
 const ImgContainer = styled.div`
