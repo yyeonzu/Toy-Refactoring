@@ -48,7 +48,7 @@ export const booklist = {
   ],
 };
 
-export const recodelist = {
+export const recordlist = {
   category: '가요',
   topic: '뉴에이지',
   recordList: [
