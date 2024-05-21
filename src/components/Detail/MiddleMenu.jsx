@@ -18,12 +18,14 @@ const MiddleMenu = ({type}) => {
   };
 
   useEffect(() => {
-    const list = ['name', 'date', 'upload', 'lowprice', 'highprice', 'best'];
-    const notClicked = list.filter((it) => it != itemSort);
-    document.getElementById(itemSort).style.color = '#000';
-    notClicked.map((it) => {
-      document.getElementById(it).style.color = 'rgba(0, 0, 0, 0.5)';
-    });
+    if (type !== 'merch') {
+      const list = ['name', 'date', 'upload', 'lowprice', 'highprice', 'best'];
+      const notClicked = list.filter((it) => it != itemSort);
+      document.getElementById(itemSort).style.color = '#000';
+      notClicked.map((it) => {
+        document.getElementById(it).style.color = 'rgba(0, 0, 0, 0.5)';
+      });
+    }
   }, [itemSort]);
 
   // 메뉴바 클릭 시 색상 변경
