@@ -69,6 +69,7 @@ const ImgContainer = styled.img`
 `;
 
 const BookImgContainer = styled.img`
+  display: flex;
   width: 180px;
   height: 240px;
 `;
