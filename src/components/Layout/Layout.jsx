@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import NavBar from './NavBar';
-import {SearchBar} from '../searchbar/SearchBar';
+import {SearchBar} from '../SearchBar/SearchBar';
 import BranchNavBar from './BranchNavBar';
 import {Outlet, useLocation, useParams} from 'react-router-dom';
 import Footer from './Footer';

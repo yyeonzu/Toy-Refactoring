@@ -11,7 +11,7 @@ const Logo = memo(({branch}) => {
   const logoSrc = 'https://image.aladin.co.kr/img/header/2023/aladin_logo.jpg';
 
   // 로고 아래의 특정 타이틀
-  const title = branch === 'default' ? '온라인 중고매장' : `${branch}점`;
+  const title = branch == 'default' ? '온라인 중고매장' : `${branch}점`;
 
   // 로고 클릭시
   const navigate = useNavigate();
