@@ -8,8 +8,8 @@ const DetailPage = () => {
 
   return (
     <DetailContainer>
-      <DetailTop />
-      <MiddleMenu type={searchParams.get('type')}/>
+      <DetailTop type={searchParams.get('type')} />
+      <MiddleMenu type={searchParams.get('type')} />
     </DetailContainer>
   );
 };
