@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 
-const BuyandAddBtn = () => {
+const BuyandAddBtn = ({type}) => {
   return (
     <BtnContainer>
-      <BuyBtn>온라인 구매</BuyBtn>
-      <AddBtn>장바구니 추가</AddBtn>
+      {type === 'top' ? (
+        <>
+          <Blank />
+          <BuyBtn>온라인 구매</BuyBtn>
+          <AddBtn>장바구니 추가</AddBtn>
+        </>
+      ) : (
+        <>
+          <BuyBtn>온라인 구매</BuyBtn>
+          <AddBtn>장바구니 추가</AddBtn>
+        </>
+      )}
     </BtnContainer>
   );
 };
@@ -30,11 +40,16 @@ const Btn = styled.button`
 `;
 
 const BuyBtn = styled(Btn)`
-background-color: #EA328F;
-color: #fff;
-`
+  background-color: #ea328f;
+  color: #fff;
+`;
 const AddBtn = styled(Btn)`
-background-color: #fff;
-border: 1px solid #EA328F;
-color: #EA328F;
-`
+  background-color: #fff;
+  border: 1px solid #ea328f;
+  color: #ea328f;
+`;
+
+const Blank = styled.div`
+  width: 176px;
+  height: 45px;
+`;
