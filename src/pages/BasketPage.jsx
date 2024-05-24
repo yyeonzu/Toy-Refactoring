@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import BasketComponent from '../components/BasketComponent';
+import BasketComponent from '../components/BasketPageComponent/BasketComponent';
 
 const BasketPage = () => {
   return (
@@ -16,9 +16,6 @@ const BasketPage = () => {
       <BasketBody>
         <BasketList>
           <BasketComponent />
-          <BasketComponent />
-          <BasketComponent />
-          <BasketComponent />
         </BasketList>
       </BasketBody>
     </BasketMain>
@@ -30,6 +27,7 @@ export default BasketPage;
 const BasketMain = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 0 111px 277px 130px;
 `;
 

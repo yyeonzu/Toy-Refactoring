@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BasketComponent = () => {
+const BookItem = () => {
   return (
-    <BasketGoods>
-      <BasketImg></BasketImg>
+    <Book>
+      <BasketImg />
       <BasketInfo>
         <BasketGoodsTitle>[중고] 도서 제목</BasketGoodsTitle>
         <BasketGoodsTexts>
@@ -22,20 +22,15 @@ const BasketComponent = () => {
           </GoodsState>
         </BasketGoodsTexts>
       </BasketInfo>
-      <BasketBtns>
-        <PrintBtn>출력하기</PrintBtn>
-        <DeleteBtn>삭제하기</DeleteBtn>
-      </BasketBtns>
-    </BasketGoods>
+    </Book>
   );
 };
 
-export default BasketComponent;
+export default BookItem;
 
-const BasketGoods = styled.div`
+const Book = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 0;
   padding-bottom: 56px;
 `;
 
@@ -98,27 +93,4 @@ const GoodsState = styled(GoodsLocation)`
 
 const ColoredText = styled(GoodsState)`
   color: #ea328f;
-`;
-
-const BasketBtns = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-  padding-left: 257px;
-`;
-
-const PrintBtn = styled.button`
-  display: inline-flex;
-  padding: 8px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border-radius: 4px;
-  border: 1px solid #3962ad;
-  background: #e8edf6;
-`;
-
-const DeleteBtn = styled(PrintBtn)`
-  border: 1px solid #010101;
-  background: #fff;
 `;
