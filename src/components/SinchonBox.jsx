@@ -1,8 +1,33 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, {useState, useEffect} from 'react';
+import styled, {css} from 'styled-components';
 import sinchonImg from '../assets/images/BranchPage/image-sinchon.png';
+import OpenViewModal from './StoreViewModal';
+import OpenRouteModal from './RouteModal';
 
 const SinchonBox = () => {
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+
+  const [isRouteModalOpen, setIsRouteModalOpen] = useState(false);
+  const handleViewModal = () => {
+    setIsViewModalOpen((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    if (isViewModalOpen) {
+      setIsViewModalOpen(true);
+    }
+  }, [isViewModalOpen]);
+
+  const handleRouteModal = () => {
+    setIsRouteModalOpen((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    if (isRouteModalOpen) {
+      setIsRouteModalOpen(true);
+    }
+  }, [isRouteModalOpen]);
+
   return (
     <SinchonBoxComponent>
       <StoreImage src={sinchonImg} alt="sinchonShop" />
@@ -19,8 +44,10 @@ const SinchonBox = () => {
           <StoreDetailsText>사용가능 지역화폐 : 제로페이</StoreDetailsText>
         </StoreDetails>
         <InfoBtns>
-          <SinchonBtn>찾아오는 길</SinchonBtn>
-          <SinchonBtn>매장 서가 단면도</SinchonBtn>
+          <SinchonBtn onClick={handleRouteModal}>찾아오는 길</SinchonBtn>
+          {isRouteModalOpen && <OpenRouteModal onClose={handleRouteModal} />}
+          <SinchonBtn onClick={handleViewModal}>매장 서가 단면도</SinchonBtn>
+          {isViewModalOpen && <OpenViewModal onClose={handleViewModal} />}
         </InfoBtns>
       </SinchonDescriptBox>
     </SinchonBoxComponent>
@@ -102,4 +129,7 @@ const SinchonBtn = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
+  &:hover {
+    background-color: #cee0ff;
+  }
 `;
