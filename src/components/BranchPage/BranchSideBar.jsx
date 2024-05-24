@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BasketSideBar = ({listData, color}) => {
+const BranchSideBar = ({listData, color}) => {
   return (
     <ListContainer>
       {listData.map((it, idx) => (
@@ -13,7 +13,7 @@ const BasketSideBar = ({listData, color}) => {
   );
 };
 
-export default BasketSideBar;
+export default BranchSideBar;
 
 const ListContainer = styled.div`
   display: flex;

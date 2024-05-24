@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import styled, {css} from 'styled-components';
-import sinchonImg from '../assets/images/BranchPage/image-sinchon.png';
+import styled from 'styled-components';
+import sinchonImg from '../../assets/images/BranchPage/image-sinchon.png';
 import OpenViewModal from './StoreViewModal';
 import OpenRouteModal from './RouteModal';
 
@@ -58,7 +58,7 @@ export default SinchonBox;
 
 const SinchonBoxComponent = styled.div`
   display: flex;
-  justify-content: flex-start;
+  width: 996px;
 `;
 
 const StoreImage = styled.img`
@@ -68,8 +68,7 @@ const StoreImage = styled.img`
 
 const SinchonDescriptBox = styled.div`
   position: relative;
-  top: -0px;
-  left: -993px;
+  left: -62em;
   display: flex;
   flex-direction: column;
   max-width: 202px;

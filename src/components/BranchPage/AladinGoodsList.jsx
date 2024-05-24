@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import GoodsComponent from './GoodsComponent';
-import aladinImg1 from '../assets/images/BranchPage/goods-component/aladin1.png';
-import aladinImg2 from '../assets/images/BranchPage/goods-component/aladin2.png';
-import aladinImg3 from '../assets/images/BranchPage/goods-component/aladin3.png';
-import aladinImg4 from '../assets/images/BranchPage/goods-component/aladin4.png';
+import aladinImg1 from '../../assets/images/BranchPage/goods-component/aladin1.png';
+import aladinImg2 from '../../assets/images/BranchPage/goods-component/aladin2.png';
+import aladinImg3 from '../../assets/images/BranchPage/goods-component/aladin3.png';
+import aladinImg4 from '../../assets/images/BranchPage/goods-component/aladin4.png';
 
 const AladinGoodsList = () => {
   return (

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import GoodsComponent from './GoodsComponent';
-import bookImg1 from '../assets/images/BranchPage/goods-component/book1.png';
-import bookImg2 from '../assets/images/BranchPage/goods-component/book2.png';
-import bookImg3 from '../assets/images/BranchPage/goods-component/book3.png';
-import bookImg4 from '../assets/images/BranchPage/goods-component/book4.png';
+import bookImg1 from '../../assets/images/BranchPage/goods-component/book1.png';
+import bookImg2 from '../../assets/images/BranchPage/goods-component/book2.png';
+import bookImg3 from '../../assets/images/BranchPage/goods-component/book3.png';
+import bookImg4 from '../../assets/images/BranchPage/goods-component/book4.png';
 
 const BooksList = () => {
   return (
