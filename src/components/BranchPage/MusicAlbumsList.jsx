@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import GoodsComponent from './GoodsComponent';
-import albumImg1 from '../assets/images/BranchPage/goods-component/album1.png';
-import albumImg2 from '../assets/images/BranchPage/goods-component/album2.png';
-import albumImg3 from '../assets/images/BranchPage/goods-component/album3.png';
-import albumImg4 from '../assets/images/BranchPage/goods-component/album4.png';
+import albumImg1 from '../../assets/images/BranchPage/goods-component/album1.png';
+import albumImg2 from '../../assets/images/BranchPage/goods-component/album2.png';
+import albumImg3 from '../../assets/images/BranchPage/goods-component/album3.png';
+import albumImg4 from '../../assets/images/BranchPage/goods-component/album4.png';
 
 const MusicAlbumsList = () => {
   return (

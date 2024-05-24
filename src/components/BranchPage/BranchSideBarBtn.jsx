@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BasketSideBarBtn = ({text, color}) => {
+const BranchSideBarBtn = ({text, color}) => {
   return (
     <BtnContainer color={color}>
       <Label>{text}</Label>
       <EtcBtn>
         더보기
-        <img src={require('../assets/images/BranchPage/icon-more.png')} alt="moreBtn" />
+        <img src={require('../../assets/images/BranchPage/icon-more.png')} alt="moreBtn" />
       </EtcBtn>
     </BtnContainer>
   );
 };
 
-export default BasketSideBarBtn;
+export default BranchSideBarBtn;
 
 const BtnContainer = styled.div`
   display: flex;

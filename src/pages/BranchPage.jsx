@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import FieldTable from '../components/FieldTable';
-import BasketSideBar from '../components/BasketSideBar';
+import FieldTable from '../components/BranchPage/FieldTable';
+import BranchSideBar from '../components/BranchPage/BranchSideBar';
 import BasketPage from './BasketPage';
-import BasketSideBarBtn from '../components/BasketSideBarBtn';
-import SinchonBox from '../components/SinchonBox';
-import BooksList from '../components/BooksList';
-import MusicAlbumsList from '../components/MusicAlbumsList';
-import AladinGoodsList from '../components/AladinGoodsList';
+import BranchSideBarBtn from '../components/BranchPage/BranchSideBarBtn';
+import SinchonBox from '../components/BranchPage/SinchonBox';
+import BooksList from '../components/BranchPage/BooksList';
+import MusicAlbumsList from '../components/BranchPage/MusicAlbumsList';
+import AladinGoodsList from '../components/BranchPage/AladinGoodsList';
 
 const BranchPage = () => {
   const newsList = [
@@ -34,10 +34,10 @@ const BranchPage = () => {
           </GoodsList>
         </BranchMain>
         <SideBar>
-          <BasketSideBarBtn text="매장소식" color="#999999" />
-          <BasketSideBar listData={newsList} />
-          <BasketSideBarBtn text="중고매장 FAQ" color="#999999" />
-          <BasketSideBar listData={FAQList} />
+          <BranchSideBarBtn text="매장소식" color="#999999" />
+          <BranchSideBar listData={newsList} />
+          <BranchSideBarBtn text="중고매장 FAQ" color="#999999" />
+          <BranchSideBar listData={FAQList} />
         </SideBar>
       </SinchonInfo>
     </BranchPageComponent>
@@ -49,7 +49,7 @@ export default BranchPage;
 const BranchPageComponent = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   padding: 40px 222px 0 222px;
 `;
 

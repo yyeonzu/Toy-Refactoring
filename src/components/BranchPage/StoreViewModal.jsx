@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import viewModal from '../assets/images/BranchPage/modal-view.png';
-import closeX from '../assets/images/BranchPage/x-close.svg';
+import viewModal from '../../assets/images/BranchPage/modal-view.png';
+import closeX from '../../assets/images/BranchPage/x-close.svg';
 
 const OpenViewModal = ({onClose}) => {
   return (
