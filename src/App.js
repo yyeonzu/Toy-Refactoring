@@ -19,8 +19,8 @@ function App() {
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route paht="/search" element={<SearchResultPage />} />
           <Route path="/basket" element={<BasketPage />} />
-          <Route path="/login" element={<LoginPage />} />
         </Route>
+        <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </Router>
