@@ -1,9 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import LoginForm from '../components/LoginPage/LoginForm';
 import kakaoImg from '../../src/assets/images/Login/kakao-login.png';
 
 const LoginPage = () => {
+  const handleKakaoLogin = () => {
+    axios
+      .get(`https://api.toy-team1.o-r.kr/login`)
+      .then((response) => {
+        console.log('응답 데이터:', response.data); // 응답 데이터 출력
+        console.log('로그인 접속!');
+        window.location.href = response.data; // 백엔드에서 받은 URL로 리디렉션
+      })
+      .catch((error) => {
+        console.error('로그인 실패', error);
+      });
+  };
+
   return (
     <LoginComponent>
       <LoginBox>
@@ -12,7 +26,7 @@ const LoginPage = () => {
       </LoginBox>
       <KakaoLogin>
         <KakaoText>카카오 계정으로 로그인 하기</KakaoText>
-        <KakaoImg src={kakaoImg} alt="카카오 로그인" />
+        <KakaoImg src={kakaoImg} alt="카카오 로그인" onClick={handleKakaoLogin} />
       </KakaoLogin>
     </LoginComponent>
   );
