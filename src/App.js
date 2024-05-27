@@ -8,6 +8,7 @@ import BasketPage from './pages/BasketPage';
 import LoginPage from './pages/LoginPage';
 import SearchResultPage from './pages/SearchResultPage';
 import Layout from './components/Layout/Layout';
+import Redirection from './pages/Redirection';
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="/branch/:branchName" element={<BranchPage />} />
           <Route path="/detail/:id" element={<DetailPage />} />
-          <Route paht="/search" element={<SearchResultPage />} />
+          <Route path="/search" element={<SearchResultPage />} />
           <Route path="/basket" element={<BasketPage />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/oauth2/callback" element={<Redirection />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </Router>
