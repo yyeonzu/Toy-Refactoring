@@ -15,7 +15,7 @@ export const addtoCart = async (data) => {
   if (res) {
     const ans = window.confirm('장바구니 페이지로 이동하시겠습니까?');
     if (ans) {
-      window.location('/basket');
+      window.location.href = '/basket';
     }
   }
 };
