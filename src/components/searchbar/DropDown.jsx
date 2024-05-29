@@ -20,7 +20,7 @@ export const DropDown = ({selectedBranch, setSelectedBranch}) => {
   const handleClickOutside = (event) => {
     // 클릭된 요소가  drop down에 포함되어 있지 않으면 isOpen을 false로 변경
     if (ref.current && !ref.current.contains(event.target)) {
-      toggling();
+      setIsOpen(false);
     }
   };
 
