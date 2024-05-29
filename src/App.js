@@ -9,7 +9,7 @@ import LoginPage from './pages/LoginPage';
 import SearchResultPage from './pages/SearchResultPage';
 import Layout from './components/Layout/Layout';
 import ListPage from './pages/ListPage';
-// import Redirection from './components/Redirection';
+import Redirection from './pages/Redirection';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
           <Route path="/basket" element={<BasketPage />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/oauth2/callback" element={<Redirection />} /> */}
+        <Route path="/oauth2/callback" element={<Redirection />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </Router>
