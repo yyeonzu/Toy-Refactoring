@@ -9,7 +9,7 @@ import LoginPage from './pages/LoginPage';
 import SearchResultPage from './pages/SearchResultPage';
 import Layout from './components/Layout/Layout';
 import ListPage from './pages/ListPage';
-import Redirection from './components/Redirection';
+import Redirection from './pages/Redirection';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           <Route path="/branch/:branchName" element={<BranchPage />} />
           <Route path="/branch/:branchName/:classification" element={<ListPage />} />
 
-          <Route path="/detail/:id" element={<DetailPage />} />
+          <Route path="/details/:id" element={<DetailPage />} />
           <Route path="/search" element={<SearchResultPage />} />
           <Route path="/basket" element={<BasketPage />} />
         </Route>
