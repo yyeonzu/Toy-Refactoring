@@ -1,59 +1,75 @@
 import styled from 'styled-components';
-import {useState} from 'react';
+import {useEffect, useRef, useState, React, memo} from 'react';
 import {storelist} from '../../services/storelist';
 import DropDown from './DropDown';
 import {getSearch} from '../../services/api/search';
 import {useNavigate, useLocation} from 'react-router-dom';
 
 // 헤더 로고 컴포넌트
-const Logo = ({branch}) => {
+const Logo = memo(({branch}) => {
+  // 로고 src
+  const logoSrc = 'https://image.aladin.co.kr/img/header/2023/aladin_logo.jpg';
+
   // 로고 아래의 특정 타이틀
   const title = branch === 'default' ? '온라인 중고매장' : `${branch}점`;
 
-  // 로고 src
-  const logoSrc = 'https://image.aladin.co.kr/img/header/2023/aladin_logo.jpg';
+  // 로고 클릭시
+  const navigate = useNavigate();
+  const handleLogoClick = () => {
+    if (branch === 'default') {
+      navigate('/');
+    } else {
+      navigate(`/branch/${branch}`);
+    }
+  };
   return (
     <>
-      <LogoContainer>
+      <LogoContainer onClick={handleLogoClick}>
         <img src={logoSrc} alt="알라딘" style={{width: '180px'}} />
         <Text>{title}</Text>
       </LogoContainer>
     </>
   );
-};
+});
 
 // 검색창 컴포넌트
 export const SearchBar = ({branch}) => {
-  // 로고를 위한 nowBranch 저장
-  const nowBranch = branch;
-
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const word = searchParams.get('word');
+  const navigate = useNavigate();
+  const inputRef = useRef(null);
 
-  // 검색할 때 반영하는 option 브랜치
-  const [selectedBranch, setSelectedBranch] = useState(branch == 'default' ? '전체 매장' : branch);
-  const [searchQuery, setSearchQuery] = useState(word ? word : '');
+  const searchParams = new URLSearchParams(location.search);
+  const initialWord = searchParams.get('word') || '';
+
+  // dropdown에서 선택한 branch
+  const [selectedBranch, setSelectedBranch] = useState(branch === 'default' ? '전체 매장' : branch);
+  // 검색어
+  const [searchQuery, setSearchQuery] = useState(initialWord);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  const navigate = useNavigate();
-
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(`/search?word=${searchQuery}`);
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
   };
+
+  useEffect(() => {
+    setSearchQuery(initialWord);
+  }, [initialWord]);
 
   return (
     <>
       <SearchBarContainer>
-        <Logo branch={nowBranch} />
+        <Logo branch={branch} />
         <InputContainer onSubmit={handleSearch}>
           <DropDown selectedBranch={selectedBranch} setSelectedBranch={setSelectedBranch} />
-          <Input type="text" value={searchQuery} onChange={handleSearchChange} />
-          <SearchButton>검색</SearchButton>
+          <Input type="text" value={searchQuery} onChange={handleSearchChange} ref={inputRef} />
+          <SearchButton type="submit">검색</SearchButton>
         </InputContainer>
       </SearchBarContainer>
     </>
@@ -71,6 +87,7 @@ const LogoContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 const Text = styled.div`
@@ -108,6 +125,7 @@ const SearchButton = styled.button`
   border: none;
 
   position: absolute;
+  cursor: pointer;
 
   font-size: 16px;
   font-weight: 600;
