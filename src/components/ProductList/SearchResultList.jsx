@@ -21,22 +21,29 @@ const SearchResultList = () => {
   const word = searchParams.get('word');
   // default 카테고리: 가요
   const [resultlist, setResultlist] = useState([]);
+  const [records, setRecords] = useState([]);
+  const [books, setBooks] = useState([]);
+  const [goods, setGoods] = useState([]);
 
   // currentPage 상태
   const [currentPage, setCurrentPage] = useState(1);
 
   // 한 페이지에 보여줄 product 개수
-  //   const itemsPerPage = 4;
-  //   const totalPages = Math.ceil(resultlist.length / itemsPerPage);
+  const itemsPerPage = 4;
+  const totalPages = Math.ceil(resultlist.length / itemsPerPage);
 
   //   // 현재 페이지에 해당하는 책 목록 계산
-  //   const currentGoodslist = resultlist.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const currentList = resultlist.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   useEffect(() => {
     getSearch(word).then((list) => {
-      setResultlist(list);
+      setBooks(list.bookList);
+      setGoods(list.goodsList);
+      setRecords(list.recordList);
+      const tmp = [...list.bookList, ...list.goodsList, ...list.recordList];
+      setResultlist(tmp);
     });
-  }, []);
+  }, [word]);
 
   const navigate = useNavigate();
   const handleItemClick = (id, type) => {
@@ -45,27 +52,47 @@ const SearchResultList = () => {
 
   return (
     <>
-      {/* <Container>
+      <Container>
         <RightContainer>
           <SortingBar length={resultlist.length} />
           <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
           <div>
-            {currentGoodslist.map((goods, index) => (
-              <RecordContainer key={goods.goods_id}>
-                {index + 1}.
-                <div onClick={() => handleItemClick(goods.goods_id, 'goods')} style={{cursor: 'pointer'}}>
-                  <GoodsInfoItem goodslist={goods} />
+            {books.map((book, index) => (
+              <RecordContainer key={book.id}>
+                <div onClick={() => handleItemClick(book.id, 'book')} style={{cursor: 'pointer'}}>
+                  <BookInfoItem key={book.id} booklist={book} />
                 </div>
                 <ButtonContainer>
-                  <BasketButton />
+                  <BasketButton onClick={() => console.log('basket')} />
+                  <Button>서가위치 보기</Button>
+                </ButtonContainer>
+              </RecordContainer>
+            ))}
+            {records.map((record, index) => (
+              <RecordContainer key={record.recordId}>
+                <div onClick={() => handleItemClick(record.recordId, 'record')} style={{cursor: 'pointer'}}>
+                  <RecordInfoItem key={record.recordId} recordlist={record} />
+                </div>
+                <ButtonContainer>
+                  <BasketButton onClick={() => console.log('basket')} />
+                  <Button>서가위치 보기</Button>
+                </ButtonContainer>
+              </RecordContainer>
+            ))}
+            {goods.map((goods, index) => (
+              <RecordContainer key={goods.goods_id}>
+                <div onClick={() => handleItemClick(goods.goods_id, 'goods')} style={{cursor: 'pointer'}}>
+                  <GoodsInfoItem key={goods.goods_id} goodslist={goods} />
+                </div>
+                <ButtonContainer>
+                  <BasketButton onClick={() => console.log('basket')} />
                   <Button>서가위치 보기</Button>
                 </ButtonContainer>
               </RecordContainer>
             ))}
           </div>
         </RightContainer>
-      </Container> */}
-      <div>{word}</div>
+      </Container>
     </>
   );
 };
