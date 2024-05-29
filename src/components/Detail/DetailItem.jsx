@@ -1,51 +1,59 @@
 import styled from 'styled-components';
 import BuyandAddBtn from './BuyandAddBtn';
 
-const DetailItem = ({type}) => {
+const DetailItem = ({type, list, item, idx}) => {
+  const state = {
+    GOOD: '상',
+    FAIR: '중',
+    POOR: '하',
+  };
+
   return (
     <ItemContainer>
       {/* 상세 페이지 음반의 경우 */}
       {type === 'record' ? (
         <>
-          <ImgContainer></ImgContainer>
+          <ImgContainer src={item.refImage} alt="refImage" />
           <InfoContainer>
-            <Title02>음반 제목</Title02>
+            <Title02>{item.title}</Title02>
             <Texts>
-              <Text>가수/발매사</Text>
               <Text>
-                음반 위치: <BoldColoredText>A17</BoldColoredText> (위에서부터 4번째칸)
+                {item.singer}/{item.publisher}
               </Text>
               <Text>
-                가격: <BoldColoredText>7000원</BoldColoredText>
+                음반 위치: <BoldColoredText>{item.location}</BoldColoredText>
+              </Text>
+              <Text>
+                가격: <BoldColoredText>{list[idx].price}원</BoldColoredText>
               </Text>
               <BoldText>
-                상태: <BoldColoredText>상</BoldColoredText>
+                상태: <BoldColoredText>{state[list[idx].state]}</BoldColoredText>
               </BoldText>
             </Texts>
-            <BuyandAddBtn />
+            <BuyandAddBtn data={{itemType: 'record', itemId: item.recordId}} />
           </InfoContainer>
         </>
       ) : (
         // 상세 페이지 도서의 경우
         <>
-          <BookImgContainer></BookImgContainer>
+          <BookImgContainer src={item.refImage} alt="refImage" />
           <InfoContainer>
-            <Title02>[중고] 도서 제목</Title02>
+            <Title02>[중고] {item.title}</Title02>
             <Texts>
-              <Text>출판사/지은이</Text>
+              <Text>{item.author}</Text>
               <Flex>
                 <PriceText>
-                  가격: <BoldColoredText>7000원</BoldColoredText>
+                  가격: <BoldColoredText>{list[idx].price}원</BoldColoredText>
                 </PriceText>
                 <Text>
-                  도서 위치: <BoldColoredText>A17</BoldColoredText> (위에서부터 4번째칸)
+                  도서 위치: <BoldColoredText>{item.location}</BoldColoredText>
                 </Text>
               </Flex>
               <BoldText>
-                상태: <BoldColoredText>상</BoldColoredText>
+                상태: <BoldColoredText>{state[list[idx].state]}</BoldColoredText>
               </BoldText>
             </Texts>
-            <BuyandAddBtn />
+            <BuyandAddBtn data={{itemType: 'book', itemId: item.bookId}} />
           </InfoContainer>
         </>
       )}
@@ -83,7 +91,6 @@ const Title02 = styled.label`
   display: flex;
   align-items: center;
   height: 31px;
-  font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -100,7 +107,6 @@ const Texts = styled.div`
 const Text = styled.label`
   height: 23px;
   color: #000;
-  font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -123,3 +129,4 @@ const Flex = styled.div`
   display: flex;
   gap: 48px;
 `;
+

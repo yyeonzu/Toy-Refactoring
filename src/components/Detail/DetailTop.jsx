@@ -1,21 +1,18 @@
 import styled from 'styled-components';
 import {BookInfoItem, GoodsInfoItem, RecordInfoItem} from '../ProductInfo/ProductInfo';
-import {booklist as mockbook} from '../../services/productlist';
-import {recordlist as mockrecord} from '../../services/productlist';
-import {goodslist as mockgoods} from '../../services/productlist';
 import BuyandAddBtn from './BuyandAddBtn';
 
-const DetailTop = ({type}) => {
+const DetailTop = ({type, item}) => {
   return (
     <TopContainer>
       {type === 'book' ? (
-        <BookInfoItem booklist={mockbook.bookList[0]} />
+        <BookInfoItem booklist={item} />
       ) : type === 'record' ? (
-        <RecordInfoItem recordlist={mockrecord.recordList[0]} />
+        <RecordInfoItem recordlist={item} />
       ) : (
         <ItemContainer>
-          <GoodsInfoItem goodslist={mockgoods.goodsList[0]} />
-          <BuyandAddBtn type="top" />
+          <GoodsInfoItem goodslist={item} />
+          <BuyandAddBtn type="top" data={{itemType: 'goods', itemId: `${item.goodsId}`}}/>
         </ItemContainer>
       )}
       <ImgContainer>
@@ -31,7 +28,7 @@ export default DetailTop;
 const TopContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 40px 0 38px 0;
+  margin: 15px 0 38px 0;
   width: 1200px;
 `;
 
@@ -49,7 +46,6 @@ const ImgContainer = styled.div`
 const Title02 = styled.label`
   color: #000;
   text-align: right;
-  font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;

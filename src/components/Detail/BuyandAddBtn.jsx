@@ -1,18 +1,19 @@
 import styled from 'styled-components';
+import {addtoCart} from '../../services/api/cart';
 
-const BuyandAddBtn = ({type}) => {
+const BuyandAddBtn = ({type, data}) => {
   return (
     <BtnContainer>
       {type === 'top' ? (
         <>
           <Blank />
           <BuyBtn>온라인 구매</BuyBtn>
-          <AddBtn>장바구니 추가</AddBtn>
+          <AddBtn onClick={() => addtoCart(data)}>장바구니 추가</AddBtn>
         </>
       ) : (
         <>
           <BuyBtn>온라인 구매</BuyBtn>
-          <AddBtn>장바구니 추가</AddBtn>
+          <AddBtn onClick={() => addtoCart(data)}>장바구니 추가</AddBtn>
         </>
       )}
     </BtnContainer>
@@ -31,7 +32,6 @@ const Btn = styled.button`
   padding: 12px;
   border: none;
   text-align: center;
-  font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
