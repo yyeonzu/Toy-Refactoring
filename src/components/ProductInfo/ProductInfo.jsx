@@ -6,9 +6,7 @@ import {goodslist as mockgoods} from '../../services/productlist';
 
 // BookInfo 컴포넌트
 export const BookInfoItem = ({booklist = mockbook.bookList[0]}) => {
-  const {title, author, publisher, stock, location, lowestPrice, price} = booklist;
-  const refImage = 'https://image.aladin.co.kr/product/32443/92/cover150/8959897175_3.jpg';
-  // 임시
+  const {title, author, publisher, stock, location, lowestPrice = 0, regularPrice, refImage} = booklist;
   const badge = '2022년 사회과학 분야 1위';
 
   return (
@@ -37,7 +35,11 @@ export const BookInfoItem = ({booklist = mockbook.bookList[0]}) => {
             value={{name: lowestPrice, unit: '원'}}
             style={{color: '#EA328F', weight: '700'}}
           />
-          <KeyValueComponent label="정가" value={{name: price, unit: '원'}} style={{color: '#000', weight: '400'}} />
+          <KeyValueComponent
+            label="정가"
+            value={{name: regularPrice, unit: '원'}}
+            style={{color: '#000', weight: '400'}}
+          />
         </InfoContainer>
       </ItemContainer>
     </>
@@ -46,8 +48,7 @@ export const BookInfoItem = ({booklist = mockbook.bookList[0]}) => {
 
 // RecodeInfo 컴포넌트
 export const RecordInfoItem = ({recordlist = mockrecord.recordList[0]}) => {
-  const {title, singer, publisher, price, lowestPrice, stock, location} = recordlist;
-  const refImage = 'https://image.aladin.co.kr/product/33875/57/cover150/c462938674_1.jpg';
+  const {title, singer, publisher, price, lowestPrice, stock, location, refImage} = recordlist;
   return (
     <>
       <ItemContainer>
@@ -85,14 +86,13 @@ export const RecordInfoItem = ({recordlist = mockrecord.recordList[0]}) => {
 
 // GoodsInfo 컴포넌트
 export const GoodsInfoItem = ({goodslist = mockgoods.goodsList[0]}) => {
-  const {goods_name, price, stock, location, ref_image} = goodslist;
-  const info = '상품정보가 길이를 넘어가는 경우에 나타내는 방법입니다.';
-  const refImage = 'https://image.aladin.co.kr/product/33875/57/cover150/c462938674_1.jpg';
+  const {goods_name, price, stock, location, ref_image, info} = goodslist;
+  // const info = '상품정보가 길이를 넘어가는 경우에 나타내는 방법입니다.';
   return (
     <>
       <ItemContainer>
         <ImgContainer height="180px">
-          <Img src={refImage} alt={goods_name} />
+          <Img src={ref_image} alt={goods_name} />
         </ImgContainer>
         <InfoContainer>
           <TitleComponent title={goods_name} badge={''} />
@@ -161,7 +161,6 @@ const ItemContainer = styled.div`
   align-items: flex-start;
   justify-content: center;
   width: fit-content;
-  /* border: solid 1px; */
 `;
 
 const ImgContainer = styled.div`
@@ -170,7 +169,7 @@ const ImgContainer = styled.div`
   background-color: #fff;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
   margin-right: 18px;
 `;
@@ -200,6 +199,7 @@ const TitleContainer = styled.div`
   align-items: flex-end;
   max-width: 170px;
   margin-bottom: 24px;
+  margin-top: 2px;
 `;
 
 const Title = styled(Text)`
@@ -208,10 +208,15 @@ const Title = styled(Text)`
   display: inline-block;
   align-items: center;
   white-space: normal;
-  word-break: break-word;
+  word-break: break-all;
   max-width: 170px;
   width: fit-content;
   position: relative;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 표시하려는 텍스트 줄 수 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 const Badge = styled(Text)`

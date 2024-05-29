@@ -8,7 +8,8 @@ import BasketPage from './pages/BasketPage';
 import LoginPage from './pages/LoginPage';
 import SearchResultPage from './pages/SearchResultPage';
 import Layout from './components/Layout/Layout';
-import Redirection from './pages/Redirection';
+import ListPage from './pages/ListPage';
+import Redirection from './components/Redirection';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="/branch/:branchName" element={<BranchPage />} />
+          <Route path="/branch/:branchName/:classification" element={<ListPage />} />
+
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/search" element={<SearchResultPage />} />
           <Route path="/basket" element={<BasketPage />} />
