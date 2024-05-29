@@ -1,14 +1,14 @@
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
-const navItems = [
-  {to: '/branch/:branchName', label: '매장 소개'},
-  {to: '/test-link', label: '중고 도서'},
-  {to: '/test-link', label: '알라딘 굿즈'},
-  {to: '/test-link', label: '음반·비디오'},
-];
-
-const BranchNavBar = () => {
+const BranchNavBar = ({branch}) => {
+  console.log(branch);
+  const navItems = [
+    {to: `/branch/${branch}`, label: '매장 소개'},
+    {to: `/branch/${branch}/books`, label: '중고 도서'},
+    {to: `/branch/${branch}/goods`, label: '알라딘 굿즈'},
+    {to: `/branch/${branch}/records`, label: '음반·비디오'},
+  ];
   return (
     <>
       <Container>
