@@ -10,11 +10,15 @@ const NavBar = () => {
 
   const navItems = [
     {id: 1, to: '/', label: '중고매장'},
-    {id: 2, to: '/real-link', label: '온라인 알라딘'},
+    {id: 2, to: 'https://www.aladin.co.kr/home/welcome.aspx', label: '온라인 알라딘'},
 
     {id: 3, to: '/basket', label: '장바구니'},
     {id: 4, to: '/login', label: '로그인'},
-    {id: 5, to: '/fake-link', label: '중고매장 FAQ'},
+    {
+      id: 5,
+      to: 'https://www.aladin.co.kr/cs_center/wcs_faq_list.aspx?CategoryId=214&UpperId=149',
+      label: '중고매장 FAQ',
+    },
   ];
 
   // 경로 변경시 acitveItem 변경
