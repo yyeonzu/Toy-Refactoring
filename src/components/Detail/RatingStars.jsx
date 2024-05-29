@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import {PiStarFill} from 'react-icons/pi';
 import {useEffect, useState} from 'react';
 
-const RatingStars = ({type, rate}) => {
+const RatingStars = ({type, rate, setRate}) => {
   const state = [1, 2, 3, 4, 5];
-  const [target, setTarget] = useState([0, 0, 0, 0, 0]);
 
+  // 평균 별점 색칠
   const AVG_RATE = rate * 20;
   const [rates, setRates] = useState([0, 0, 0, 0, 0]);
 
   const calcStarRates = () => {
     let tempRates = [0, 0, 0, 0, 0];
-    let starScore = (AVG_RATE * 70) / 100; // 별 5개 총 70, 100점 만점에 비율 맞춤.
+    let starScore = rate ? ((AVG_RATE * 70) / 100).toFixed(1) : 0; // 별 5개 총 70, 100점 만점에 비율 맞춤.
     let idx = 0;
     while (starScore > 14) {
       // 각 별에 채워질 width
@@ -20,33 +20,38 @@ const RatingStars = ({type, rate}) => {
       starScore -= 14;
     }
     tempRates[idx] = starScore; // 남은 별점
-    return tempRates;
+    console.log(tempRates);
+    setRates(tempRates);
   };
 
   useEffect(() => {
-    setRates(calcStarRates);
-  }, []);
+    if (type === 'readBig') {
+      calcStarRates();
+    }
+  }, [rate]);
 
+  // 별점 작성
   const clickStar = (e) => {
-    console.log(e.target.id);
-    const newArr = [...target];
-    for (let i = 0; i < Number(e.target.id); i++) {
-      newArr[i] = 1;
+    const newArr = [];
+    for (let i = 0; i < 5; i++) {
+      i < Number(e.target.id) ? newArr.push(1) : newArr.push(0);
     }
-    for (let i = Number(e.target.id); i < 5; i++) {
-      newArr[i] = 0;
-    }
-    console.log(newArr);
-    setTarget(newArr);
+    newArr.map((it, idx) =>
+      it === 1
+        ? (document.getElementById(`${idx + 1}`).style.fill = '#ea328f')
+        : (document.getElementById(`${idx + 1}`).style.fill = 'grey')
+    );
+    setRate(Number(e.target.id));
   };
 
-  useState(() => {
+  // 댓글 읽기 작은 별점
+  const returnSmallStar = () => {
+    const rateList = [];
     for (let i = 0; i < 5; i++) {
-      if (target[i] === 1) {
-        document.getElementById(String(i + 1)).style.fill = '#ea328f';
-      }
+      i < rate ? rateList.push(<FilledStar color="#ea328f" />) : rateList.push(<FilledStar />);
     }
-  }, [target]);
+    return rateList;
+  };
 
   return (
     <>
@@ -73,30 +78,26 @@ const RatingStars = ({type, rate}) => {
           <Rates>{rate}/5.0</Rates>
         </ReadStars>
       ) : type === 'readSmall' ? (
-        <Stars>
-          <FilledStar id="1" onClick={clickStar} />
-          <FilledStar id="2" onClick={clickStar} />
-          <FilledStar id="3" onClick={clickStar} />
-          <FilledStar id="4" onClick={clickStar} />
-          <FilledStar id="5" onClick={clickStar} />
-        </Stars>
+        <Stars>{returnSmallStar()}</Stars>
       ) : (
         <WriteStars>
-          {/* {target.map((it, idx) => {
-                <svg id={idx} onClick={clickStar} xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 14 13' fill='grey'>
-            <path
-                             
-                            d='M9,2l2.163,4.279L16,6.969,12.5,10.3l.826,4.7L9,12.779,4.674,15,5.5,10.3,2,6.969l4.837-.69Z'
-                            transform='translate(-2 -2)'
-                        />
+          {state.map((it, idx) => (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 14 13"
+              fill="grey"
+              cursor="pointer"
+            >
+              <path
+                id={idx + 1}
+                onClick={clickStar}
+                d="M9,2l2.163,4.279L16,6.969,12.5,10.3l.826,4.7L9,12.779,4.674,15,5.5,10.3,2,6.969l4.837-.69Z"
+                transform="translate(-2 -2)"
+              />
             </svg>
-            })} */}
-
-          <FilledStar id="1" onClick={clickStar} />
-          <FilledStar id="2" onClick={clickStar} />
-          <FilledStar id="3" onClick={clickStar} />
-          <FilledStar id="4" onClick={clickStar} />
-          <FilledStar id="5" onClick={clickStar} />
+          ))}
         </WriteStars>
       )}
     </>
@@ -113,19 +114,22 @@ const Stars = styled.div`
 `;
 const ReadStars = styled.div`
   display: flex;
+  align-items: center;
   position: relative;
   gap: 8px;
 `;
 
 const WriteStars = styled.div`
+  display: flex;
+  gap: 3px;
   position: absolute;
   top: 21px;
   right: 238px;
 `;
 
 const FilledStar = styled(PiStarFill)`
-  width: '20px';
-  color: grey;
+  width: 20px;
+  color: ${(props) => (props.color ? props.color : 'gray')};
 `;
 
 const Rates = styled.label`
@@ -135,7 +139,6 @@ const Rates = styled.label`
   margin: 17px 0 0 16px;
   color: #ea328f;
   text-align: right;
-  font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
