@@ -11,7 +11,7 @@ const StoreList = () => {
   const navigate = useNavigate();
 
   const handleGoBranch = () => {
-    navigate('/branch/sinchon');
+    navigate('/branch/신촌');
   };
 
   const goKakaoMap = () => {
