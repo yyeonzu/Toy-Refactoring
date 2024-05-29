@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import {useState} from 'react';
 import {storelist} from '../../services/storelist';
 import DropDown from './DropDown';
+import {getSearch} from '../../services/api/search';
+import {useNavigate, useLocation} from 'react-router-dom';
 
 // 헤더 로고 컴포넌트
 const Logo = ({branch}) => {
@@ -25,18 +27,25 @@ export const SearchBar = ({branch}) => {
   // 로고를 위한 nowBranch 저장
   const nowBranch = branch;
 
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const word = searchParams.get('word');
+
   // 검색할 때 반영하는 option 브랜치
   const [selectedBranch, setSelectedBranch] = useState(branch == 'default' ? '전체 매장' : branch);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(word ? word : '');
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
+  const navigate = useNavigate();
+
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(`Searching for "${searchQuery}" in ${selectedBranch}`);
+    navigate(`/search?word=${searchQuery}`);
   };
+
   return (
     <>
       <SearchBarContainer>
