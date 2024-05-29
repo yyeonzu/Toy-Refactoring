@@ -1,6 +1,11 @@
+import {useEffect} from 'react';
 import styled from 'styled-components';
 
 const SearchPrice = () => {
+  useEffect(() => {
+    document.getElementById('domestic').checked = true;
+  }, []);
+
   return (
     <ContentContainer>
       <Img src={require('../../assets/images/HomePage/barcode-img.png')} alt="barcode-img" />
@@ -11,19 +16,19 @@ const SearchPrice = () => {
           <Empha01>상품타입</Empha01>
           <Radios>
             <Detail01>
-              <input type="radio" />
+              <input id="domestic" type="radio" name="Itemtype" />
               국내도서
             </Detail01>
             <Detail01>
-              <input type="radio" />
+              <input type="radio" name="Itemtype" />
               외국도서
             </Detail01>
             <Detail01>
-              <input type="radio" />
+              <input type="radio" name="Itemtype" />
               음반
             </Detail01>
             <Detail01>
-              <input type="radio" />
+              <input type="radio" name="Itemtype" />
               DVD/블루레이
             </Detail01>
           </Radios>
@@ -88,7 +93,6 @@ const Img = styled.img`
 const Title02 = styled.label`
   margin-bottom: 8px;
   color: #000;
-  font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -97,7 +101,6 @@ const Title02 = styled.label`
 
 const Empha01 = styled.label`
   color: ${(props) => (props.color ? props.color : '#000')};
-  font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
@@ -125,7 +128,6 @@ const Detail01 = styled.label`
   display: flex;
   align-items: center;
   color: ${(props) => (props.color ? props.color : '#000')};
-  font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -155,6 +157,7 @@ const SearchInput = styled.input`
   gap: 8px;
   border: 1px solid var(--02, #999);
   background: var(--00, #fff);
+  font-family: Pretendard;
 `;
 const SearchBtn = styled.button`
   display: inline-flex;

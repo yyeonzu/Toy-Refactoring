@@ -1,72 +1,30 @@
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
+import {storelist} from '../../services/storelist.js';
 
 const StoreList = () => {
-  const seoulList = [
-    '가로수길',
-    '강남',
-    '강서 홈플러스',
-    '건대',
-    '노원역',
-    '대학로',
-    '목동',
-    '서울대 입구역',
-    '수유',
-    '신림',
-    '신촌',
-    '연신내',
-    '영등포',
-    '이수역',
-    '잠실롯데 월드타워',
-    '잠실 새내역',
-    '종로',
-    '천호',
-    '합정',
-  ];
+  const seoulList = storelist.seoulList;
+  const gyeonggiList = storelist.gyeonggiList;
+  const othersList = storelist.othersList;
 
-  const gyeonggiList = [
-    '동탄 하나로마트',
-    '동탄',
-    '범계',
-    '부천',
-    '분당 서현',
-    '분당 야탑',
-    '산본',
-    '수원 시청역',
-    '수원',
-    '수지',
-    '의정부 홈플러스',
-    '일산',
-    '평택',
-    '화정',
-  ];
-  const othersList = [
-    '광주 상무',
-    '광주 충정로',
-    '김해',
-    '대구 동성로',
-    '대구 상인',
-    '대전 시청역',
-    '대전 은행',
-    '동대구역',
-    '마산 합정',
-    '부산 경성대 부경대역',
-    '부산 덕천',
-    '부산 서면동보',
-    '부산 서면',
-    '부산 센텀',
-    '울산',
-    '인천 계산 홈플러스',
-    '인천 구월',
-    '인천\n송도',
-    '인천 청라',
-    '전주',
-    '창원 상남',
-    '천안신불당',
-    '청주',
-  ];
+  const navigate = useNavigate();
 
-  const seoulBtnList = seoulList.map((it, idx) => <StoreBtn key={idx}>{it}점</StoreBtn>);
+  const handleGoBranch = () => {
+    navigate('/branch/sinchon');
+  };
+
+  const goKakaoMap = () => {
+    window.open(
+      'https://m.map.kakao.com/actions/searchView?q=%EC%95%8C%EB%9D%BC%EB%94%98%EC%A4%91%EA%B3%A0%EC%84%9C%EC%A0%90&wxEnc=LWQQTM&wyEnc=QNLULSS&lvl=4#!/all/map/place'
+    );
+  };
+
+  const seoulBtnList = seoulList.map((it, idx) => (
+    <StoreBtn key={idx} onClick={handleGoBranch}>
+      {it}점
+    </StoreBtn>
+  ));
   const gyeonggiBtnList = gyeonggiList.map((it, idx) => <StoreBtn key={idx}>{it}점</StoreBtn>);
   const othersBtnList = othersList.map((it, idx) => <StoreBtn key={idx}>{it}점</StoreBtn>);
 
@@ -77,7 +35,7 @@ const StoreList = () => {
           <Title02>중고매장</Title02>
           <Detail01>해당 지점명을 선택하면 보유도서를 검색할 수 있습니다.</Detail01>
         </Labels>
-        <KakaomapBtn>카카오맵에서 전국매장 조회하기</KakaomapBtn>
+        <KakaomapBtn onClick={goKakaoMap}>카카오맵에서 전국매장 조회하기</KakaomapBtn>
       </HeadContainer>
       <BodyContainer>
         <SemiBodyContainer>
@@ -115,7 +73,6 @@ const Labels = styled.div`
 `;
 const Title02 = styled.label`
   color: black;
-  font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -125,7 +82,6 @@ const Title02 = styled.label`
 const Detail01 = styled.label`
   margin-top: 8px;
   color: #999;
-  font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -143,7 +99,6 @@ const KakaomapBtn = styled.button`
   background-color: #e8edf6;
   color: #3962ad;
   text-align: center;
-  font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -174,7 +129,6 @@ const StoreLocation = styled.div`
   background-color: #3962ad;
   color: #fff;
   text-align: right;
-  font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -202,13 +156,14 @@ const StoreBtn = styled.button`
   border-left: 0;
   background-color: #fafafa;
   color: #000;
-  text-align: center;
   font-family: Pretendard;
+  text-align: center;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   word-break: keep-all;
+  white-space: break-spaces;
   cursor: pointer;
   &:hover {
     background-color: #cee0ff;

@@ -45,7 +45,7 @@ const MainContainer = styled.div`
   display: flex;
   gap: 24px;
   padding: 0 222px;
-  margin: 0 auto;
+  justify-content: center;
 `;
 
 const LeftContainer = styled.div`
