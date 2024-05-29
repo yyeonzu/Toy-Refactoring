@@ -10,13 +10,12 @@ const Layout = () => {
   const {branchName} = useParams();
 
   const isBranchRoute = location.pathname.includes('/branch/');
-
   return (
     <>
       <Container>
         <NavBar />
         <SearchBar branch={branchName ? branchName : 'default'} />
-        {isBranchRoute && <BranchNavBar />}
+        {isBranchRoute && <BranchNavBar branch={branchName} />}
       </Container>
       <Outlet />
       <Footer />
