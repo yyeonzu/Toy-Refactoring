@@ -1,10 +1,12 @@
-import {useState} from 'react';
+import {useRef, useState} from 'react';
+import {useEffect} from 'react';
 import styled from 'styled-components';
 import {RiArrowDownSLine as ArrowIcon} from 'react-icons/ri';
 import {storelist} from '../../services/storelist';
 
-export const DropDown = ({branch = '전체 매장', selectedBranch, setSelectedBranch}) => {
+export const DropDown = ({selectedBranch, setSelectedBranch}) => {
   const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef();
 
   const options = ['전체 매장', ...storelist.seoulList, ...storelist.gyeonggiList, ...storelist.othersList];
 
@@ -15,9 +17,24 @@ export const DropDown = ({branch = '전체 매장', selectedBranch, setSelectedB
     setIsOpen(false);
   };
 
+  const handleClickOutside = (event) => {
+    // 클릭된 요소가  drop down에 포함되어 있지 않으면 isOpen을 false로 변경
+    if (ref.current && !ref.current.contains(event.target)) {
+      toggling();
+    }
+  };
+
+  useEffect(() => {
+    // document에 이벤트 리스너로 mouse down 이벤트 추가
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
-      <SelectContainer onClick={toggling}>
+      <SelectContainer ref={ref} onClick={toggling}>
         <DropDownHeader>
           {selectedBranch}
           {isOpen && (
@@ -42,6 +59,7 @@ const SelectContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 14px;
   cursor: pointer;
   background-color: #fff;
@@ -51,15 +69,13 @@ const SelectContainer = styled.div`
 const DropDownHeader = styled.div`
   color: #33afe9;
   font-weight: 600;
-
-  width: 140px;
-  align-items: center;
+  width: 110px;
 `;
 
 const DropDownContainer = styled.ul`
   position: absolute;
   z-index: 1000;
-  width: 100%;
+  width: 110%;
   max-height: calc(14px * 20);
   outline: none;
 
@@ -73,6 +89,7 @@ const DropDownContainer = styled.ul`
   align-items: flex-start;
   justify-content: flex-start;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 0;
   margin-top: 2px;
 `;
