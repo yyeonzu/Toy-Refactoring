@@ -3,6 +3,7 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
 const Redirection = () => {
+  const url = `${process.env.REACT_APP_SERVER_URL}`;
   const code = new URL(window.location.href).searchParams.get('code');
   const navigate = useNavigate();
   console.log(code);
@@ -10,12 +11,12 @@ const Redirection = () => {
   useEffect(() => {
     if (code) {
       axios
-        .get(`https://api.toy-team1.o-r.kr/oauth2/kakao?code=${code}`)
+        .get(`${url}/oauth2/kakao?code=${code}`)
         .then((response) => {
           const {accountId, userinfo, accessToken, refreshToken} = response.data;
           console.log(response.data);
           console.log(userinfo);
-          window.localStorage.setItem('accountId', accountId)
+          window.localStorage.setItem('accountId', accountId);
           window.localStorage.setItem('access_token', accessToken);
           window.localStorage.setItem('refresh_token', refreshToken);
           console.log('로그인 성공');
