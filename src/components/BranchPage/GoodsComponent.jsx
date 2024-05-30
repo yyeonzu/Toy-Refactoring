@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const GoodsComponent = ({productImg, productTitle, productPrice, productDC}) => {
+const GoodsComponent = ({productImg, productTitle, productPrice, productDC, onClick}) => {
   return (
-    <Goods>
-      <GoodsImg src={productImg} alt="상품 이미지" />
+    <Goods onClick={onClick}>
+      <GoodsImg src={productImg} alt="상품 이미지" hasDC={!!productDC} />
       <TitleSection>
         <GoodsTitle>{productTitle}</GoodsTitle>
       </TitleSection>
@@ -27,6 +27,9 @@ const Goods = styled.div`
 const GoodsImg = styled.img`
   width: 150px;
   display: flex;
+  cursor: pointer;
+  height: ${(props) => (props.hasDC ? 'auto' : '150px')};
+  object-fit: cover;
 `;
 
 const TitleSection = styled.div`
@@ -45,6 +48,7 @@ const GoodsTitle = styled.p`
   text-overflow: clip;
   margin-bottom: 0px;
   margin-top: 8px;
+  cursor: pointer;
 `;
 
 const GoodsInfo = styled.div`

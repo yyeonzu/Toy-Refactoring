@@ -21,13 +21,14 @@ const Redirection = () => {
           window.localStorage.setItem('refresh_token', refreshToken);
           console.log('로그인 성공');
           navigate('/');
+          alert('로그인 완료');
         })
         .catch((error) => {
           console.error(error);
           console.log('로그인 실패');
         });
     }
-  }, [code, navigate]);
+  }, [code, navigate, url]);
 
   return (
     <div>
