@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import {axiosInstance} from '../../services/api';
 import {useNavigate} from 'react-router-dom';
 import GoodsComponent from './GoodsComponent';
 
@@ -14,7 +14,7 @@ const AladinGoodsComponent = () => {
   useEffect(() => {
     const fetchGoods = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/goods`);
+        const response = await axiosInstance.get(`/goods`);
         console.log(response.data);
         setGoods(response.data.goodsList.slice(0, 4));
       } catch (error) {

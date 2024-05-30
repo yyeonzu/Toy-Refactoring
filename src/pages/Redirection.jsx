@@ -1,17 +1,16 @@
 import React, {useEffect} from 'react';
-import axios from 'axios';
+import {axiosInstance} from '../services/api';
 import {useNavigate} from 'react-router-dom';
 
 const Redirection = () => {
-  const url = `${process.env.REACT_APP_SERVER_URL}`;
   const code = new URL(window.location.href).searchParams.get('code');
   const navigate = useNavigate();
   console.log(code);
 
   useEffect(() => {
     if (code) {
-      axios
-        .get(`${url}/oauth2/kakao?code=${code}`)
+      axiosInstance
+        .get(`/oauth2/kakao?code=${code}`)
         .then((response) => {
           const {accountId, userinfo, accessToken, refreshToken} = response.data;
           console.log(response.data);
@@ -28,7 +27,7 @@ const Redirection = () => {
           console.log('로그인 실패');
         });
     }
-  }, [code, navigate, url]);
+  }, [code, navigate]);
 
   return (
     <div>

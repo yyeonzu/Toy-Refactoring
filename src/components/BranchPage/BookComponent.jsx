@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import {axiosInstance} from '../../services/api';
 import {useNavigate} from 'react-router-dom';
 import GoodsComponent from './GoodsComponent';
 
@@ -14,7 +14,7 @@ const BookComponent = ({is_domestic, category, topic}) => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(
+        const response = await axiosInstance.get(
           `${process.env.REACT_APP_SERVER_URL}/books/${is_domestic}/${category}/${topic}`
         );
         console.log(response.data);
