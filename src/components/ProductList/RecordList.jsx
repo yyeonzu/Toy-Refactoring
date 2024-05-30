@@ -77,8 +77,8 @@ const RecordList = () => {
                   <RecordInfoItem key={record.recordId} recordlist={record} />
                 </div>
                 <ButtonContainer>
-                  <BasketButton />
-                  <Button>서가위치 보기</Button>
+                  <BasketButton type="record" id={record.recordId} />
+                  <Button onClick={() => console.log('here')}>서가위치 보기</Button>
                 </ButtonContainer>
               </RecordContainer>
             ))}

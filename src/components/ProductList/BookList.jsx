@@ -78,7 +78,7 @@ const BookList = () => {
                     <BookInfoItem key={book.id} booklist={book} />
                   </div>
                   <ButtonContainer>
-                    <BasketButton onClick={() => console.log('basket')} />
+                    <BasketButton type="book" id={book.id} />
                     <Button>서가위치 보기</Button>
                   </ButtonContainer>
                 </BookContainer>

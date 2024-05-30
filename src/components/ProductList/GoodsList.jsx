@@ -54,7 +54,7 @@ const GoodsList = () => {
                   <GoodsInfoItem goodslist={goods} />
                 </div>
                 <ButtonContainer>
-                  <BasketButton />
+                  <BasketButton type="goods" id={goods.goods_id} />
                   <Button>서가위치 보기</Button>
                 </ButtonContainer>
               </RecordContainer>
