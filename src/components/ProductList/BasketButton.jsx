@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import {addtoCart} from '../../services/api/cart';
 
 // 장바구니 api 사용
-const BasketButton = () => {
-  return <Button>장바구니 추가</Button>;
+const BasketButton = ({type, id}) => {
+  return <Button onClick={() => addtoCart({itemType: type, itemId: id})}>장바구니 추가</Button>;
 };
 
 const Button = styled.button`
