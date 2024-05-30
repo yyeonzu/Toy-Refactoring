@@ -5,9 +5,11 @@ import LoginForm from '../components/LoginPage/LoginForm';
 import kakaoImg from '../../src/assets/images/Login/kakao-login.png';
 
 const LoginPage = () => {
+  const url = `${process.env.REACT_APP_SERVER_URL}`;
+
   const handleKakaoLogin = () => {
     axios
-      .get(`https://api.toy-team1.o-r.kr/login`)
+      .get(`${url}/login`)
       .then((response) => {
         console.log('응답 데이터:', response.data); // 응답 데이터 출력
         console.log('로그인 접속!');

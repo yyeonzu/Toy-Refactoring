@@ -5,6 +5,7 @@ import BranchSideBar from '../components/BranchPage/BranchSideBar';
 import BasketPage from './BasketPage';
 import BranchSideBarBtn from '../components/BranchPage/BranchSideBarBtn';
 import SinchonBox from '../components/BranchPage/SinchonBox';
+//import BooksList from '../components/BranchPage/BooksList';
 import BooksList from '../components/BranchPage/BooksList';
 import MusicAlbumsList from '../components/BranchPage/MusicAlbumsList';
 import AladinGoodsList from '../components/BranchPage/AladinGoodsList';
@@ -50,7 +51,7 @@ const BranchPageComponent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 222px 0 222px;
+  padding: 4px 222px 0 222px;
 `;
 
 const SinchonInfo = styled.div`
