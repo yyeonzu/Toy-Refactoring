@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const AlbumItem = () => {
+const AlbumItem = ({item}) => {
   return (
     <Album>
-      <BasketImg />
+      <BasketImg src={item.itemImgUrl} alt={item.title} />
       <BasketInfo>
-        <BasketGoodsTitle>음반 제목</BasketGoodsTitle>
+        <BasketGoodsTitle>{item.title}</BasketGoodsTitle>
         <BasketGoodsTexts>
-          <GoodsAuthor>가수/발매사</GoodsAuthor>
+          <GoodsAuthor>{item.producer}</GoodsAuthor>
           <GoodsLocation>
-            음반 위치: <ColoredText>A17</ColoredText> (위에서부터 4번째칸)
+            음반 위치: <ColoredText>{item.location}</ColoredText> (위에서부터 4번째칸)
           </GoodsLocation>
           <GoodsPrice>
-            가격: <ColoredText>7000원</ColoredText>
+            가격: <ColoredText>{item.price}원</ColoredText>
           </GoodsPrice>
           <GoodsState>
             상태: <ColoredText>상</ColoredText>

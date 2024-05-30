@@ -1,20 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BookItem = () => {
+const BookItem = ({item}) => {
   return (
     <Book>
-      <BasketImg />
+      <BasketImg src={item.itemImgUrl} alt={item.title} />
       <BasketInfo>
-        <BasketGoodsTitle>[중고] 도서 제목</BasketGoodsTitle>
+        <BasketGoodsTitle>[중고] {item.title}</BasketGoodsTitle>
         <BasketGoodsTexts>
-          <GoodsAuthor>출판사/지은이</GoodsAuthor>
+          <GoodsAuthor>
+            {item.producer}/{item.publisher}
+          </GoodsAuthor>
           <GoodsRow>
             <GoodsPrice>
-              가격: <ColoredText>7000원</ColoredText>
+              가격: <ColoredText>{item.price}원</ColoredText>
             </GoodsPrice>
             <GoodsLocation>
-              도서 위치: <ColoredText>A17</ColoredText> (위에서부터 4번째칸)
+              도서 위치: <ColoredText>{item.location}</ColoredText> (위에서부터 4번째칸)
             </GoodsLocation>
           </GoodsRow>
           <GoodsState>
