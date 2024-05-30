@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import {addtoCart} from '../../services/api/cart';
 
 const GoodsItem = ({item}) => {
   return (
@@ -33,6 +32,7 @@ const Goods = styled.div`
 const BasketImg = styled.img`
   width: 180px;
   height: 180px;
+  object-fit: cover;
 `;
 
 const BasketInfo = styled.div`

@@ -4,7 +4,6 @@ import {axiosInstance} from '../../services/api';
 import BookItem from './BookItem';
 import AlbumItem from './AlbumItem';
 import GoodsItem from './GoodsItem';
-//import {addtoCart, postCart} from '../../services/api/cart';
 
 const BasketComponent = () => {
   const [items, setItems] = useState([]);
@@ -13,7 +12,8 @@ const BasketComponent = () => {
     const fetchCartItems = async () => {
       try {
         const res = await axiosInstance.get('/accounts/carts');
-        setItems(res.data);
+        setItems(res.data.slice(0, 6));
+        console.log(res.data);
       } catch (error) {
         console.log('장바구니 목록 오류', error);
       }
@@ -23,7 +23,9 @@ const BasketComponent = () => {
 
   const deleteItems = async (cartId) => {
     try {
-      await axiosInstance.delete(`/carts/${cartId}`);
+      console.log('cartId:', cartId);
+      const response = await axiosInstance.delete(`/carts/${cartId}`);
+      console.log('Delete response:', response);
       setItems((prevItems) => prevItems.filter((item) => item.cartId !== cartId));
     } catch (error) {
       console.log('장바구니 삭제 오류', error);
