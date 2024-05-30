@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
 const Redirection = () => {
-  const url = `${url}`;
+  const url = `${process.env.REACT_APP_SERVER_URL}`;
   const code = new URL(window.location.href).searchParams.get('code');
   const navigate = useNavigate();
   console.log(code);
