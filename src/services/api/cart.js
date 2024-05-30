@@ -3,9 +3,9 @@ import {axiosInstance} from './index';
 export const postCart = async (data) => {
   try {
     const res = await axiosInstance.post('carts', data);
-    return true
+    return true;
   } catch (e) {
-    console.log(e)
+    console.log(e);
     alert(e.response.data.message);
   }
 };
