@@ -14,14 +14,19 @@ const BasketComponent = () => {
         const response = await axiosInstance.get(`/accounts/carts`);
         setItems(response.data);
       } catch (error) {
-        console.log('Error showing cart items', error);
+        console.log('장바구니 목록 오류', error);
       }
     };
     showCart();
   }, []);
 
-  const deleteItems = (id) => {
-    setItems(items.filter((item) => item.id !== id));
+  const deleteItems = async (cartId) => {
+    try {
+      await axiosInstance.delete(`/carts/${cartId}`);
+      setItems(items.filter((item) => item.cartId !== cartId));
+    } catch (error) {
+      console.log('장바구니 삭제 오류', error);
+    }
   };
 
   return (
