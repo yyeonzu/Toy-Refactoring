@@ -98,6 +98,7 @@ const FooterLinkContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 70%;
+  white-space: nowrap;
 `;
 
 const FooterLink = styled.a`
@@ -158,6 +159,8 @@ const Button = styled.a`
   font-size: 12px;
   font-weight: 400;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 `;
 
 const FooterButtonSection = styled.div`
