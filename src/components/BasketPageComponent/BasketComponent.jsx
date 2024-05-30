@@ -26,11 +26,7 @@ const BasketComponent = () => {
       console.log('cartId:', cartId);
       const response = await axiosInstance.delete(`/carts/${cartId}`);
       console.log('Delete response:', response);
-      setItems((prevItems) => {
-        console.log('Previous items:', prevItems); // 이전 상태 확인
-        const updatedItems = prevItems.filter((item) => item.cartId !== cartId);
-        return updatedItems.slice(0, 6);
-      });
+      setItems(items.filter((item) => item.cartId !== cartId));
     } catch (error) {
       console.log('장바구니 삭제 오류', error);
     }
@@ -42,7 +38,7 @@ const BasketComponent = () => {
         <BasketItems key={item.cartId}>
           <div>
             {item.itemType === 'book' && <BookItem item={item} />}
-            {item.itemType === 'album' && <AlbumItem item={item} />}
+            {item.itemType === 'record' && <AlbumItem item={item} />}
             {item.itemType === 'goods' && <GoodsItem item={item} />}
           </div>
           <BasketBtns>
