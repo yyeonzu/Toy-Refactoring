@@ -1,18 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import {axiosInstance} from '../../services/api';
 import BookItem from './BookItem';
 import AlbumItem from './AlbumItem';
 import GoodsItem from './GoodsItem';
 
 const BasketComponent = () => {
-  const [items, setItems] = useState([
-    {id: 1, type: 'book'},
-    {id: 2, type: 'book'},
-    {id: 3, type: 'album'},
-    {id: 4, type: 'book'},
-    {id: 5, type: 'album'},
-    {id: 6, type: 'goods'},
-  ]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const showCart = async () => {
+      try {
+        const response = await axiosInstance.get(`/accounts/carts`);
+        setItems(response.data);
+      } catch (error) {
+        console.log('Error showing cart items', error);
+      }
+    };
+    showCart();
+  }, []);
 
   const deleteItems = (id) => {
     setItems(items.filter((item) => item.id !== id));
@@ -21,11 +27,11 @@ const BasketComponent = () => {
   return (
     <BasketGoods>
       {items.map((item) => (
-        <BasketItems>
-          <div key={item.id}>
-            {item.type === 'book' && <BookItem />}
-            {item.type === 'album' && <AlbumItem />}
-            {item.type === 'goods' && <GoodsItem />}
+        <BasketItems key={item.cartId}>
+          <div>
+            {item.itemType === 'book' && <BookItem />}
+            {item.itemType === 'album' && <AlbumItem />}
+            {item.itemType === 'goods' && <GoodsItem />}
           </div>
           <BasketBtns>
             <PrintBtn>출력하기</PrintBtn>
