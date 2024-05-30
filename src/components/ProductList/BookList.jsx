@@ -7,7 +7,7 @@ import {bookClassification} from '../../services/classification';
 import {BookInfoItem} from '../ProductInfo/ProductInfo';
 import Pagination from './Pagination';
 import BasketButton from './BasketButton';
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 // booklist 중 특정 category에 대한 모든 list를 저장하는 함수 (API 연결)
 
@@ -22,6 +22,11 @@ const BookList = () => {
   // default 카테고리: 건강/취미
   const [category, setCategory] = useState('건강/취미');
   const [booklist, setBooklist] = useState([]);
+
+  // url의 ?topic=query 가져오기
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const topic = searchParams.get('topic');
 
   // currentPage 상태
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,22 +44,52 @@ const BookList = () => {
     const productlist = [];
 
     for (const [topicIndex] of topics.entries()) {
-      const products = await getBooks(categoryIndex + 1, topicIndex + 1);
-      if (products) {
-        productlist.push(...products.booklist);
-      }
-      if (products.booklist.length === 0) {
-        console.error(products);
+      try {
+        const products = await getBooks(categoryIndex + 1, topicIndex + 1);
+        if (products) {
+          productlist.push(...products.booklist);
+        }
+        if (products.booklist.length === 0) {
+          console.error('No books found for topic index:', topicIndex + 1);
+        }
+      } catch (error) {
+        console.error('Failed to fetch books for topic index:', topicIndex + 1, error);
       }
     }
     return productlist;
   };
 
+  const fetchTopicBooks = async (topic) => {
+    const topics = Object.keys(bookClassification[category]);
+    const topicIndex = topics.indexOf(topic);
+    try {
+      const booklist = await getBooks(getIndex(category) + 1, topicIndex + 1);
+      return booklist.booklist;
+    } catch (error) {
+      console.error('Failed to fetch books for topic:', topic, error);
+      return [];
+    }
+  };
+
   useEffect(() => {
-    fetchAllBooks().then((booklist) => {
-      setBooklist(booklist);
-    });
-  }, [category]);
+    if (topic === null) {
+      fetchAllBooks()
+        .then((booklist) => {
+          setBooklist(booklist);
+        })
+        .catch((error) => {
+          console.error('Failed to fetch all books:', error);
+        });
+      return;
+    }
+    fetchTopicBooks(topic)
+      .then((booklist) => {
+        setBooklist(booklist);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch books for topic:', topic, error);
+      });
+  }, [topic]);
 
   // infoitem 클릭시 상세페이지로 이동
   const navigate = useNavigate();
