@@ -50,7 +50,7 @@ const BranchPageComponent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 222px 0 222px;
+  padding: 4px 222px 0 222px;
 `;
 
 const SinchonInfo = styled.div`
