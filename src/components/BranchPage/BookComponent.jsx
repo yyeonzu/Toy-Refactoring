@@ -14,9 +14,7 @@ const BookComponent = ({is_domestic, category, topic}) => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axiosInstance.get(
-          `${process.env.REACT_APP_SERVER_URL}/books/${is_domestic}/${category}/${topic}`
-        );
+        const response = await axiosInstance.get(`/books/${is_domestic}/${category}/${topic}`);
         console.log(response.data);
         setBooks(response.data.booklist);
       } catch (error) {
