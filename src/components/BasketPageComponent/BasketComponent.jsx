@@ -34,13 +34,13 @@ const BasketComponent = () => {
       {items.map((item) => (
         <BasketItems key={item.cartId}>
           <div>
-            {item.itemType === 'book' && <BookItem />}
-            {item.itemType === 'album' && <AlbumItem />}
-            {item.itemType === 'goods' && <GoodsItem />}
+            {item.itemType === 'book' && <BookItem item={item} />}
+            {item.itemType === 'album' && <AlbumItem item={item} />}
+            {item.itemType === 'goods' && <GoodsItem item={item} />}
           </div>
           <BasketBtns>
             <PrintBtn>출력하기</PrintBtn>
-            <DeleteBtn onClick={() => deleteItems(item.id)}>삭제하기</DeleteBtn>
+            <DeleteBtn onClick={() => deleteItems(item.cartId)}>삭제하기</DeleteBtn>
           </BasketBtns>
         </BasketItems>
       ))}

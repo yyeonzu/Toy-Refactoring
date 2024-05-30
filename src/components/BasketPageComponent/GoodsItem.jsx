@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {addtoCart} from '../../services/api/cart';
 
 const GoodsItem = ({item}) => {
   return (
