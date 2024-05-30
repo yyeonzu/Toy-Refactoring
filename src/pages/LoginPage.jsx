@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import axiosInstance from 'axios';
+import {axiosInstance} from '../services/api';
 import LoginForm from '../components/LoginPage/LoginForm';
 import kakaoImg from '../../src/assets/images/Login/kakao-login.png';
 

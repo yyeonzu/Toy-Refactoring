@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import {axiosInstance} from '../../services/api';
 import {useNavigate} from 'react-router-dom';
 import GoodsComponent from './GoodsComponent';
 
@@ -14,7 +14,7 @@ const MusicAlbumComponent = ({category, topic}) => {
   useEffect(() => {
     const fetchRecords = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/records/${category}/${topic}`);
+        const response = await axiosInstance.get(`${process.env.REACT_APP_SERVER_URL}/records/${category}/${topic}`);
         console.log(response.data);
         setRecords(response.data.recordList);
       } catch (error) {
