@@ -7,7 +7,7 @@ import {recordClassification} from '../../services/classification';
 import {BookInfoItem, RecordInfoItem} from '../ProductInfo/ProductInfo';
 import Pagination from './Pagination';
 import BasketButton from './BasketButton';
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 const getIndex = (category) => {
   const categories = Object.keys(recordClassification);
@@ -18,6 +18,11 @@ const RecordList = () => {
   // default 카테고리: 가요
   const [category, setCategory] = useState('가요');
   const [recordlist, setRecordlist] = useState([]);
+
+  // url의 ?topic=query 가져오기
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const topic = searchParams.get('topic');
 
   // currentPage 상태
   const [currentPage, setCurrentPage] = useState(1);
@@ -35,22 +40,52 @@ const RecordList = () => {
     const productlist = [];
 
     for (const [topicIndex] of topics.entries()) {
-      const products = await getRecords(categoryIndex + 1, topicIndex + 1);
-      if (products) {
-        productlist.push(...products.recordList);
-      }
-      if (products.recordList.length === 0) {
-        console.error(products);
+      try {
+        const products = await getRecords(categoryIndex + 1, topicIndex + 1);
+        if (products) {
+          productlist.push(...products.recordList);
+        }
+        if (products.recordList.length === 0) {
+          console.error('No records found for topic index:', topicIndex + 1);
+        }
+      } catch (error) {
+        console.error('Failed to fetch records for topic index:', topicIndex + 1, error);
       }
     }
     return productlist;
   };
 
+  const fetchTopicRecords = async (topic) => {
+    const topics = Object.keys(recordClassification[category]);
+    const topicIndex = topics.indexOf(topic);
+    try {
+      const products = await getRecords(getIndex(category) + 1, topicIndex + 1);
+      return products.recordList;
+    } catch (error) {
+      console.error('Failed to fetch records for topic:', topic, error);
+      return [];
+    }
+  };
+
   useEffect(() => {
-    fetchAllRecords().then((recordlist) => {
-      setRecordlist(recordlist);
-    });
-  }, [category]);
+    if (topic === null) {
+      fetchAllRecords()
+        .then((recordlist) => {
+          setRecordlist(recordlist);
+        })
+        .catch((error) => {
+          console.error('Failed to fetch all records:', error);
+        });
+      return;
+    }
+    fetchTopicRecords(topic)
+      .then((recordlist) => {
+        setRecordlist(recordlist);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch records for topic:', topic, error);
+      });
+  }, [topic]);
 
   const navigate = useNavigate();
   const handleItemClick = (id, type) => {

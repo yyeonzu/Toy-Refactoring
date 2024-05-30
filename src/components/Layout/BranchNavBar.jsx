@@ -2,7 +2,6 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
 const BranchNavBar = ({branch}) => {
-  console.log(branch);
   const navItems = [
     {to: `/branch/${branch}`, label: '매장 소개'},
     {to: `/branch/${branch}/books`, label: '중고 도서'},

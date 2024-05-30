@@ -1,12 +1,23 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {bookClassification} from '../../services/classification';
+import {Link, useNavigate} from 'react-router-dom';
 
 export const Classification = ({title, type, openCategory, setOpenCategory}) => {
   // 카테고리 클릭시 child 카테고리 여닫기
   const handleParentClick = (category) => {
     setOpenCategory(openCategory === category ? null : category);
   };
+
+  const currentPath = window.location.pathname;
+  const [topic, setTopic] = useState('');
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (topic === '') return;
+    navigate(`${currentPath}?topic=${topic}`);
+  }, [topic]);
 
   // 카테고리 트리 렌더링 (트리, 부모 카테고리)
   const renderTree = (tree, parentCategory = '', listCount = '') => {
@@ -23,10 +34,13 @@ export const Classification = ({title, type, openCategory, setOpenCategory}) => 
 
       return (
         <div key={curCategory}>
-          <Category onClick={handleClick}>
-            {category}
-            {hasChildren && <span>{openCategory === curCategory ? '-' : '+'}</span>}
-          </Category>
+          {hasChildren && (
+            <Category onClick={handleClick}>
+              {category}
+              <span>{openCategory === curCategory ? '-' : '+'}</span>
+            </Category>
+          )}
+          {!hasChildren && <SubCategory onClick={() => setTopic(category)}>{category}</SubCategory>}
           {isOpen && (
             <SubCategoryContainer>{renderTree(tree[category], curCategory, (listCount = 1))}</SubCategoryContainer>
           )}
@@ -81,4 +95,18 @@ const SubCategoryContainer = styled.div`
   }
   align-items: center;
   padding: 10px 0;
+`;
+
+const SubCategory = styled.div`
+  font-size: 16px;
+  font-weight: 400;
+  padding: 12px 20px;
+
+  display: flex;
+  justify-content: flex-start;
+
+  cursor: pointer;
+  &:hover {
+    color: #ff8a3d;
+  }
 `;
