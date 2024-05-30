@@ -35,7 +35,6 @@ const Album = styled.div`
 const BasketImg = styled.div`
   width: 180px;
   height: 180px;
-  background: #d9d9d9;
 `;
 
 const BasketInfo = styled.div`
