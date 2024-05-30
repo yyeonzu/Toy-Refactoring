@@ -30,7 +30,7 @@ const Goods = styled.div`
   padding-bottom: 56px;
 `;
 
-const BasketImg = styled.div`
+const BasketImg = styled.img`
   width: 180px;
   height: 180px;
 `;
