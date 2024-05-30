@@ -7,9 +7,6 @@ import GoodsItem from './GoodsItem';
 
 const BasketComponent = () => {
   const [items, setItems] = useState([]);
-  useEffect(() => {
-    localStorage.removeItem('basketItems');
-  }, []);
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -39,10 +36,6 @@ const BasketComponent = () => {
     }
   };
 
-  const deleteAllItems = () => {
-    setItems([]);
-  };
-
   return (
     <BasketGoods>
       {items.map((item) => (
@@ -54,7 +47,7 @@ const BasketComponent = () => {
           </div>
           <BasketBtns>
             <PrintBtn>출력하기</PrintBtn>
-            <DeleteBtn onClick={() => deleteAllItems()}>삭제하기</DeleteBtn>
+            <DeleteBtn onClick={() => deleteItems(item.cartId)}>삭제하기</DeleteBtn>
           </BasketBtns>
         </BasketItems>
       ))}
