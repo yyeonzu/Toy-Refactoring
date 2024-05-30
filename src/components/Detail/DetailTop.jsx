@@ -11,8 +11,8 @@ const DetailTop = ({type, item}) => {
         <RecordInfoItem recordlist={item} />
       ) : (
         <ItemContainer>
-          <GoodsInfoItem goodslist={item} />
-          <BuyandAddBtn type="top" data={{itemType: 'goods', itemId: `${item.goodsId}`}}/>
+          <GoodsInfoItem goodslist={{...item, ref_image: item.refImage, goods_name: item.goodsName}} />
+          <BuyandAddBtn type="top" data={{itemType: 'goods', itemId: `${item.goodsId}`}} />
         </ItemContainer>
       )}
       <ImgContainer>
