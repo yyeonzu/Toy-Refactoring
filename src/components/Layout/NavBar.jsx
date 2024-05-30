@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Link, useLocation} from 'react-router-dom';
 
@@ -25,6 +25,10 @@ const NavBar = () => {
   const handleClick = (item) => {
     setActiveItem(item);
   };
+
+  useEffect(() => {
+    setActiveItem(`/${currentPath}`);
+  }, [currentPath]);
 
   return (
     <>
