@@ -24,7 +24,7 @@ const BasketComponent = () => {
   const deleteItems = async (cartId) => {
     try {
       console.log('cartId:', cartId);
-      const response = await axiosInstance.delete(`/carts/${cartId}`);
+      const response = await axiosInstance.delete(`/carts/1`);
       console.log('Delete response:', response);
       setItems((prevItems) => {
         console.log('Previous items:', prevItems); // 이전 상태 확인
