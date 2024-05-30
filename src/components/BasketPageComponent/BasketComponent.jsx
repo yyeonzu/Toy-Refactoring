@@ -26,7 +26,11 @@ const BasketComponent = () => {
       console.log('cartId:', cartId);
       const response = await axiosInstance.delete(`/carts/${cartId}`);
       console.log('Delete response:', response);
-      setItems((prevItems) => prevItems.filter((item) => item.cartId !== cartId));
+      setItems((prevItems) => {
+        console.log('Previous items:', prevItems); // 이전 상태 확인
+        const updatedItems = prevItems.filter((item) => item.cartId !== cartId);
+        return updatedItems.slice(0, 6);
+      });
     } catch (error) {
       console.log('장바구니 삭제 오류', error);
     }
