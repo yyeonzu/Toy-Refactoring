@@ -5,7 +5,7 @@ import LoginForm from '../components/LoginPage/LoginForm';
 import kakaoImg from '../../src/assets/images/Login/kakao-login.png';
 
 const LoginPage = () => {
-  const url = `${url}`;
+  const url = `${process.env.REACT_APP_SERVER_URL}`;
 
   const handleKakaoLogin = () => {
     axios
