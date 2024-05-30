@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
+import {useNavigate} from 'react-router-dom';
 
 const FieldTable = () => {
   const domesticBooks = [
@@ -50,6 +51,12 @@ const FieldTable = () => {
     setCurrentField(field);
   };
 
+  const navigate = useNavigate();
+
+  const handleGoListPage = () => {
+    navigate('/branch/신촌/:classification');
+  };
+
   const getTableData = (field) => {
     let tableData;
     if (currentField === 'domestic') tableData = domesticBooks;
@@ -57,7 +64,7 @@ const FieldTable = () => {
     else if (currentField === 'albums') tableData = musicAlbums;
 
     return tableData.map((field, index) => (
-      <TableRow key={index}>
+      <TableRow key={index} onClick={handleGoListPage}>
         <FieldBtn>{field}</FieldBtn>
         {(currentField === 'foreign' ? (index + 1) % 4 === 0 : (index + 1) % 5 === 0) && (
           <HorizonLine currentField={currentField} />
@@ -146,7 +153,6 @@ const TableBody = styled.div`
   border-bottom: 1px solid #90a8d1;
   padding-left: 30px;
   padding-right: 30px;
-  cursor: pointer;
   ${(props) =>
     props.currentField === 'foreign' &&
     css`
@@ -169,6 +175,7 @@ const FieldBtn = styled.div`
   align-items: center;
   font-size: 16px;
   white-space: nowrap;
+  cursor: pointer;
 `;
 
 const HorizonLine = styled.div`
