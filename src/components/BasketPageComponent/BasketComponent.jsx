@@ -7,6 +7,9 @@ import GoodsItem from './GoodsItem';
 
 const BasketComponent = () => {
   const [items, setItems] = useState([]);
+  useEffect(() => {
+    localStorage.removeItem('basketItems');
+  }, []);
 
   useEffect(() => {
     const fetchCartItems = async () => {
