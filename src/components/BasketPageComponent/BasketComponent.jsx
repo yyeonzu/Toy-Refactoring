@@ -54,7 +54,7 @@ const BasketComponent = () => {
           </div>
           <BasketBtns>
             <PrintBtn>출력하기</PrintBtn>
-            <DeleteBtn onClick={() => deleteAllItems}>삭제하기</DeleteBtn>
+            <DeleteBtn onClick={() => deleteAllItems()}>삭제하기</DeleteBtn>
           </BasketBtns>
         </BasketItems>
       ))}
