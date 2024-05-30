@@ -14,7 +14,7 @@ const MusicAlbumComponent = ({category, topic}) => {
   useEffect(() => {
     const fetchRecords = async () => {
       try {
-        const response = await axiosInstance.get(`${process.env.REACT_APP_SERVER_URL}/records/${category}/${topic}`);
+        const response = await axiosInstance.get(`/records/${category}/${topic}`);
         console.log(response.data);
         setRecords(response.data.recordList);
       } catch (error) {
