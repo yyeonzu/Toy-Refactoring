@@ -52,6 +52,10 @@ export const SearchBar = ({branch}) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
+    if (!searchQuery) {
+      alert('검색어를 입력해주세요');
+      return;
+    }
     navigate(`/search?word=${searchQuery}`);
     if (inputRef.current) {
       inputRef.current.blur();

@@ -8,12 +8,19 @@ import BasketButton from './BasketButton';
 import {useNavigate, useLocation} from 'react-router-dom';
 import {getSearch} from '../../services/api/search';
 
-// const = () => {
-//   const location = useLocation();
-//   const searchParams = new URLSearchParams(location.search);
-//   const word = searchParams.get('word');
-//   return <div>{word}</div>;
-// };
+const NoResult = ({word}) => {
+  return (
+    <NoResultContainer>
+      <Message>
+        <Highlight>'{word}' </Highlight>에 대한 검색 결과가 없습니다.
+      </Message>
+      <Instructions>
+        <Instruction>입력한 검색어의 철자 또는 띄어쓰기가 정확한지 다시 한번 확인해 주세요.</Instruction>
+        <Instruction>검색어의 단어 수를 줄이거나, 보다 일반적인 검색어를 사용하여 검색해 보세요.</Instruction>
+      </Instructions>
+    </NoResultContainer>
+  );
+};
 
 const SearchResultList = () => {
   const location = useLocation();
@@ -36,6 +43,7 @@ const SearchResultList = () => {
   const currentList = resultlist.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   useEffect(() => {
+    if (word === '') return;
     getSearch(word).then((list) => {
       setBooks(list.bookList);
       setGoods(list.goodsList);
@@ -54,8 +62,13 @@ const SearchResultList = () => {
     <>
       <Container>
         <RightContainer>
-          <SortingBar length={resultlist.length} />
-          <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+          {resultlist.length === 0 && <NoResult word={word} />}
+          {resultlist.length != 0 && (
+            <>
+              <SortingBar length={resultlist.length} />
+              <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+            </>
+          )}
           <div>
             {books.map((book, index) => (
               <RecordContainer key={book.id}>
@@ -146,4 +159,40 @@ const Button = styled.button`
 
   white-space: nowrap;
   cursor: pointer;
+`;
+
+// NoResult 컴포넌트
+
+const NoResultContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 64px 0;
+`;
+
+const Message = styled.p`
+  color: #333;
+  font-size: 18px;
+  margin: 0;
+  width: 80%;
+`;
+
+const Highlight = styled.span`
+  color: #e60073;
+  font-weight: 700;
+`;
+
+const Instructions = styled.ul`
+  padding-left: 20px;
+  padding-top: 20px;
+  list-style-type: disc;
+  color: #666;
+  font-size: 16px;
+  border-top: 2px solid #e9e9e9;
+  width: 80%;
+`;
+
+const Instruction = styled.li`
+  margin-bottom: 10px;
 `;
