@@ -75,18 +75,21 @@ const Review = () => {
     }
     formData.append('content', comment);
     formData.append('grade', rate);
-    formData.append('account_id', 7);
 
     return formData;
   };
 
   // 리뷰 등록
   const addReview = async () => {
-    const formData = makeFormData();
+    if (!localStorage.getItem('access_token')) {
+      alert('리뷰 작성을 위해서는 로그인이 필요합니다.');
+    } else {
+      const formData = makeFormData();
 
-    const res = await postReview(formData);
-    if (res) {
-      window.location.reload();
+      const res = await postReview(formData);
+      if (res) {
+        window.location.reload();
+      }
     }
   };
 
