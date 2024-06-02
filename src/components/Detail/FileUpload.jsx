@@ -19,14 +19,14 @@ const FileUpload = ({file, setFile, postFile, setPostFile}) => {
   const handleUpload = (e) => {
     // 파일 저장
     const {files} = e.target;
-    setPostFile(Array.from(files));
+    const tempFile = [...postFile, ...Array.from(files)];
+    setPostFile(tempFile.slice(-4, tempFile.length));
 
     // 미리보기 저장
-    const uploadFile = files;
+    const uploadFile = tempFile.slice(-4, tempFile.length);
     const temp = [];
-    const final = uploadFile.length > 4 ? Array.from(uploadFile).slice(0, 4) : uploadFile;
 
-    for (let i = 0; i < final.length; i++) {
+    for (let i = 0; i < uploadFile.length; i++) {
       let img = window.URL.createObjectURL(uploadFile[i]);
       temp[i] = img;
     }
