@@ -31,7 +31,6 @@ const GoodsList = () => {
   useEffect(() => {
     getGoods().then((goodslist) => {
       setGoodslist(goodslist.goodsList);
-      console.log('goods', goodslist.goodsList);
     });
   }, []);
 
