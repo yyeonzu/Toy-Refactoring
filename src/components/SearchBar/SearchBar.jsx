@@ -66,6 +66,10 @@ export const SearchBar = ({branch}) => {
     setSearchQuery(initialWord);
   }, [initialWord]);
 
+  useEffect(() => {
+    setSelectedBranch(branch === 'default' ? '전체 매장' : branch);
+  }, [branch]);
+
   return (
     <>
       <SearchBarContainer>
