@@ -6,7 +6,7 @@ const DetailTop = ({type, item}) => {
   return (
     <TopContainer>
       {type === 'book' ? (
-        <BookInfoItem booklist={item} />
+        <BookInfoItem booklist={{...item, regularPrice: item.price}} />
       ) : type === 'record' ? (
         <RecordInfoItem recordlist={item} />
       ) : (
